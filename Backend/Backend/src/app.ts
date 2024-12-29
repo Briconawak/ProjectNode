@@ -49,10 +49,10 @@ app.listen(3000, () => {
 
 (async () => {
   try {
-    // Synchronize the models with the database
+    // Synchronizer les modèles avce la database
     await sequelize.sync({ force: true });
 
-    // Insert Products
+    // Insertion des produits
     const produitsData = [
       { Nom: 'Football', Description: 'Official size and weight football for matches.', Type: 'Sport', Prix: 25.99, Prix_Promo: 18.99 },
       { Nom: 'Basketball', Description: 'Durable outdoor basketball.', Type: 'Sport', Prix: 30.99, Prix_Promo: 24.99 },
@@ -68,7 +68,7 @@ app.listen(3000, () => {
 
     const produits = await Produit.bulkCreate(produitsData);
 
-    // Insert Orders
+    // Insertions des commandes
     const commandesData = [
       { ID_Produit: produits[0].ID_Produit, Nombre: 2, Date: new Date() },
       { ID_Produit: produits[1].ID_Produit, Nombre: 1, Date: new Date() },
