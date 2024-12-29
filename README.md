@@ -49,7 +49,7 @@ Normally, you should have the same message in the terminal.
 
 Now the last step is, using the cmd, going in the file [Frontend](https://github.com/Briconawak/ProjectNode/tree/main/Frontend) and start the website unsing the command `ng serve`.
 
-<img src="pictore/tutorial_setup_start_website.png" width="700" />
+<img src="picture/tutorial_setup_start_website.png" width="700" />
 
 Finally, go to [this link](http://localhost:4200) to end on the website.
 
