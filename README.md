@@ -45,6 +45,8 @@ Normally, you should have the same message in the terminal.
 
 <img src="picture/tutorial_setup_backend.png" width="900" />
 
+(Think to make a `npm install` if you didn't made it)
+
 Now the last step is, using the cmd, going in the file [Frontend](https://github.com/Briconawak/ProjectNode/tree/main/Frontend) and start the website unsing the command `ng serve`.
 
 <img src="picture/tutorial_setup_frontend.png" width="700" />
