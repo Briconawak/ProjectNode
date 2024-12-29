@@ -45,8 +45,8 @@
   <div class="panier" (click)="toggleCart()">Panier ({{ getTotalItemsInCart() }} produits)</div>
 </header>
 
+<!-- Section Panier -->
 <div class="main-container">
-  <!-- Section Panier -->
   <div *ngIf="showCart" class="modal">
     <div class="modal-content">
       <button class="close-button" (click)="toggleCart()">Fermer</button>
