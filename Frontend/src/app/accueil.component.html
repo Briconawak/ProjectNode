@@ -1,0 +1,97 @@
+<header>
+  <div class="modal" *ngIf="showFilter">
+    <div class="modal-content">
+      <button class="close-button" (click)="toggleFilter()">Fermer</button>
+      <h3>Filtres</h3>
+      <label>
+        Type:
+        <select (change)="updateTypeFilter($event)">
+          <option value="all">Tous</option>
+          <option value="décoration">Décoration</option>
+          <option value="alimentaire">Alimentaire</option>
+          <option value="autre">Autre</option>
+        </select>
+      </label>
+      <label>
+        Tri:
+        <select (change)="updateSortFilter($event)">
+          <option value="none">Aucun</option>
+          <option value="asc">Prix croissant</option>
+          <option value="desc">Prix décroissant</option>
+        </select>
+      </label>
+      <label>
+        Promotions:
+        <select (change)="updatePromoFilter($event)">
+          <option value="all">Tous</option>
+          <option value="promo">En promotion</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  
+
+  <div class="filtre" (click)="toggleFilter()">Filtre</div>
+  <div class="search-bar-container">
+    <input
+      type="text"
+      class="search-bar"
+      placeholder="barre de recherche..."
+      [(ngModel)]="searchTerm"
+      (input)="filterProducts()"
+    />
+    <button class="search-button">🔍</button>
+  </div>
+  <div class="panier" (click)="toggleCart()">Panier ({{ getTotalItemsInCart() }} produits)</div>
+</header>
+
+<div class="main-container">
+  <!-- Section Panier -->
+  <div *ngIf="showCart" class="modal">
+    <div class="modal-content">
+      <button class="close-button" (click)="toggleCart()">Fermer</button>
+      <h3>Votre Panier</h3>
+      <div *ngFor="let item of cart">
+        <span>{{ item.nom }} x{{ item.quantity }}</span>
+        <span>Prix unitaire : {{ item.finalPrice | currency }}</span>
+        <button class="minus-button" (click)="updateProductFromCart(item, -1)">-</button>
+        <button class="add-button" (click)="updateProductFromCart(item, 1)">+</button>
+      </div>
+      <div>
+        Total: {{ getTotalPrice() | currency }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Section Produits -->
+  <div class="products-container">
+    <div *ngFor="let product of filteredProducts" class="product-box">
+      <div class="product-header">
+        <div class="product-header-left">
+          <span>{{ product.nom }}</span>
+          <span class="product-quantity" *ngIf="product.quantity > 0">
+            (Sélectionné : {{ product.quantity }})
+          </span>
+        </div>
+        <div class="buttons-container">
+          <button class="minus-button" (click)="removeFromCart(product)">-</button>
+          <button class="add-button" (click)="addToCart(product)">+</button>
+        </div>
+      </div>
+      <div class="product-content">
+        <div class="product-image">{{ product.image }}</div>
+        <div class="product-description">{{ product.descriptif }}</div>
+      </div>
+      <div class="product-info">
+        <span *ngIf="product.promotion > 0">
+          <span class="old-price">{{ product.price | currency }}</span>
+          <span class="promo-price">
+            {{ (product.price * (1 - product.promotion / 100)) | currency }}
+          </span>
+        </span>
+        <span *ngIf="product.promotion === 0">{{ product.price | currency }}</span>
+        <span>Type: {{ product.type }}</span>
+      </div>
+    </div>
+  </div>
+</div>
