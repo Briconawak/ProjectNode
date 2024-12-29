@@ -29,7 +29,7 @@ Produit.init(
       allowNull: false,
     },
     Prix: {
-      type: DataTypes.FLOAT, // NUMBER(10,2) est mappé sur FLOAT dans Sequelize
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     Prix_Promo: {
